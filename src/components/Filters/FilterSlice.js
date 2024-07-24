@@ -1,21 +1,20 @@
-import { SEARCH_TODO } from "../../redux/types"
+import { createSlice } from "@reduxjs/toolkit";
 import { STATUS_ALL } from '../../constants/Status'
 
-const initState = {
-    search: '',
-    status: STATUS_ALL,
-    priority: []
-}
-
-const filterReducer = (state = initState, action) => {
-    switch (action.type) {
-        case SEARCH_TODO:
+const filterSlice = createSlice({
+    name: 'filter',
+    initialState: {
+        search: '',
+        status: STATUS_ALL,
+        priority: []
+    },
+    reducers: {
+        search: (state, action) => {
             return {
-                ...action.payload
+                ...state, ...action.payload
             }
-        default:
-            return state
+        }
     }
-}
+})
 
-export default filterReducer
+export default filterSlice

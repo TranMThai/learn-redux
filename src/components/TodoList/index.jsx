@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidV4 } from 'uuid';
 import { PRIORITY_MEDIUM } from '../../constants/Priority';
-import { addTodo } from '../../redux/actions';
 import { filtedTodoList } from '../../redux/selectors';
 import Todo from '../Todo';
+import todoListSlice from './TodoListSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch()
@@ -14,14 +14,14 @@ export default function TodoList() {
   const todoList = useSelector(filtedTodoList)
 
   const handleAdd = () => {
-    dispatch(addTodo({
+    dispatch(todoListSlice.actions.addTodo({
       id: uuidV4(),
       name: todoName,
       completed: false,
       priority: todoPriority
     }))
     setTodoName(''),
-    setTodoPriority(PRIORITY_MEDIUM)
+      setTodoPriority(PRIORITY_MEDIUM)
   }
 
   return (

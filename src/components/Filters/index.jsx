@@ -1,7 +1,7 @@
-import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd';
+import { Col, Input, Radio, Row, Select, Tag, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { search } from '../../redux/actions';
+import filterSlice from './FilterSlice'
 
 const { Search } = Input;
 
@@ -28,7 +28,7 @@ export default function Filters() {
   }
 
   useEffect(() => {
-    dispatch(search(filter))
+    dispatch(filterSlice.actions.search(filter))
   }, [filter])
 
   return (
